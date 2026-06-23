@@ -2,5 +2,5 @@
     <x-slot:heading>
         Contact Page
     </x-slot:heading>
-    <h1>Hello from Contact page!</h1>
+    <h1> {{ $call }} : on 0543093025</h1>
 </x-layout>
