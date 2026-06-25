@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_listings', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            //   $table->unsignedBigInteger('employer_id');
-            $table->foreignIdFor(\App\Models\Employer::class, 'employer_id')->constrained('employers')->cascadeOnDelete();
-            $table->string('title');
-            $table->decimal('salary');
+            $table->string('name');
             $table->timestamps();
+        });
+        Schema::create('job_tag', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(App\Models\Job::class, 'job_listing_id');
+            $table->foreignIdFor(App\Models\Tag::class);
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_listings');
+        Schema::dropIfExists('tags');
     }
 };
