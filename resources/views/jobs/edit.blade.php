@@ -1,14 +1,12 @@
 <x-layout>
     <x-slot:heading>
-        Create Job
+        Edit Job: {{ $job->title }}
     </x-slot:heading>
 
     <form method="POST" action="/jobs">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-white/10 pb-12">
-                <h2 class="text-base/7 font-semibold">Create a New Job</h2>
-                <p class="mt-1 text-sm/6 text-gray-400">This information will be displayed publicly so be careful what you share.</p>
 
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-4">

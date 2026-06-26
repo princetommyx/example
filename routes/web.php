@@ -15,21 +15,41 @@ Route::get('/jobs', function () {
     ]);
 });
 
+//Create
 Route::get('/jobs/create', function () {
     return view('jobs.create');
 });
 
+//edit
+Route::get('/jobs/{id}/edit', function ($id) {
+    $job = Job::find($id);
+
+    return view('jobs.edit', ['job' => $job]);
+});
+
+//show
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
 
     return view('jobs.show', ['job' => $job]);
 });
 
+//Store
 Route::post('/jobs', function () {
-   dd(request()->all());
-}); 
+    request()->validate([
+        'title' => 'required|min:3',
+        'salary' => 'required'
+    ]);
+
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+
+    return redirect('/jobs');
+});
 
 Route::get('/contact', function () {
     return view('contact');
 });
-
